@@ -1,0 +1,381 @@
+
+/* =========================================
+   WORDLE GAME - MAIN CSS
+   React Wordle Clone
+   ========================================= */
+
+/* General styling */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Main application */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+
+.header {
+  width: 100%;
+  padding: 15px 20px;
+  border-bottom: 1px solid #d3d6da;
+  text-align: center;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  margin: 5px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666666;
+  margin: 5px 0;
+}
+
+.new-game-button {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  padding: 9px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #538d4e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-game-button:hover {
+  background-color: #426f3e;
+}
+
+/* Main game container */
+
+.game-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructions {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.message {
+  min-height: 28px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #d9534f;
+  text-align: center;
+}
+
+/* Game board */
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px auto 25px;
+}
+
+/* Each row */
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+/* Individual tiles */
+
+.tile {
+  width: 58px;
+  height: 58px;
+  border: 2px solid #d3d6da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #222222;
+  background-color: white;
+  transition: background-color 0.2s ease;
+}
+
+/* Tile when user types a letter */
+
+.tile.filled {
+  border-color: #878a8c;
+}
+
+/* Green - correct letter and position */
+
+.tile.correct {
+  background-color: #538d4e;
+  border-color: #538d4e;
+  color: white;
+}
+
+/* Yellow - correct letter, wrong position */
+
+.tile.present {
+  background-color: #b59f3b;
+  border-color: #b59f3b;
+  color: white;
+}
+
+/* Gray - letter not found */
+
+.tile.absent {
+  background-color: #787c7e;
+  border-color: #787c7e;
+  color: white;
+}
+
+/* Virtual keyboard */
+
+.keyboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.key {
+  min-width: 32px;
+  height: 52px;
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  background-color: #d3d6da;
+  color: #222222;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.key:hover {
+  opacity: 0.85;
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+/* Larger Enter and Backspace buttons */
+
+.wide-key {
+  flex: 1.6;
+  font-size: 11px;
+}
+
+/* Keyboard evaluation colors */
+
+.key.correct {
+  background-color: #538d4e;
+  color: white;
+}
+
+.key.present {
+  background-color: #b59f3b;
+  color: white;
+}
+
+.key.absent {
+  background-color: #787c7e;
+  color: white;
+}
+
+/* Color explanation */
+
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+  font-size: 11px;
+  color: #666666;
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-box {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.legend-box.correct {
+  background-color: #538d4e;
+}
+
+.legend-box.present {
+  background-color: #b59f3b;
+}
+
+.legend-box.absent {
+  background-color: #787c7e;
+}
+
+/* Game over modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal {
+  background-color: white;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  margin-top: 0;
+  font-size: 25px;
+}
+
+.modal p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.answer {
+  margin: 20px 0;
+}
+
+.answer strong {
+  color: #538d4e;
+  font-size: 23px;
+  letter-spacing: 3px;
+}
+
+/* Restart button */
+
+.restart-button {
+  background-color: #538d4e;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background-color: #426f3e;
+}
+
+/* Footer */
+
+.footer {
+  margin-top: auto;
+  padding: 20px 10px;
+  text-align: center;
+  color: #888888;
+  font-size: 12px;
+}
+
+/* Responsive design */
+
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 10px;
+  }
+
+  .header h1 {
+    font-size: 27px;
+  }
+
+  .new-game-button {
+    position: static;
+    margin-top: 8px;
+  }
+
+  .game-container {
+    padding: 10px;
+  }
+
+  .tile {
+    width: min(16vw, 55px);
+    height: min(16vw, 55px);
+    font-size: 25px;
+  }
+
+  .row {
+    gap: 4px;
+  }
+
+  .game-board {
+    gap: 4px;
+  }
+
+  .key {
+    min-width: 0;
+    height: 48px;
+    font-size: 12px;
+  }
+
+  .wide-key {
+    font-size: 9px;
+  }
+
+  .legend {
+    gap: 8px;
+    font-size: 10px;
+  }
+}
